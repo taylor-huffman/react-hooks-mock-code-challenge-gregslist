@@ -28,6 +28,7 @@ function AddListing({ setViewListings, handleAddItem }) {
     return (
         <main>
             <div className="options">
+                <h2>Add A Listing</h2>
                 <button onClick={handleReturnToListings}>Return To Listings</button>
             </div>
             <form onSubmit={handleSubmit} className="add-listing-form">
