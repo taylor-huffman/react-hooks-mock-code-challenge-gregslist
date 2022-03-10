@@ -93,7 +93,7 @@ main {
   box-shadow: 0 0 7px 0 #ddd;
   border-radius: 5px;
   border: 1px solid #ccc;
-  width: 300px;
+  width: 357px;
 }
 
 .card .image {
@@ -131,6 +131,33 @@ main {
   font-size: 1rem;
 }
 
-.sort-container {
+.options {
+  margin-top: 15px;
+  padding: 15px;
+  display: flex;
+  justify-content: space-between;
+}
+
+button, .add-listing-form input[type='submit'] {
+  padding: 5px 10px;
+  cursor: pointer;
+}
+
+.add-listing-form input[type='submit'] {
+  width: fit-content;
+}
+
+.add-listing-form input {
+  margin-bottom: 15px;
+  padding: 5px 10px;
+}
+
+.sort-container label select {
+  margin-left: 5px;
+}
+
+form.add-listing-form {
+  display: flex;
+  flex-direction: column;
   padding: 15px;
 }
