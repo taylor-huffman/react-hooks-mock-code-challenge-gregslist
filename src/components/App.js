@@ -6,6 +6,7 @@ function App() {
 
   const [listings, setListings] = useState([])
   const [filter, setFilter] = useState('')
+  const [sort, setSort] = useState('All')
 
   useEffect(() => {
     fetch('http://localhost:6001/listings')
@@ -27,12 +28,42 @@ function App() {
     setFilter(newFilter)
   }
 
-  const displayListings = listings.filter(listing => listing.description.toLowerCase().includes(filter.toLowerCase()))
+  function handleSort(sortValue) {
+    setSort(sortValue)
+  }
+
+  const displayListings = listings.filter(listing => {
+    return listing.description.toLowerCase().includes(filter.toLowerCase())
+  }).sort((a,b) => {
+    if (sort === 'All') {
+      return true
+    } else if (sort === 'A-Z') {
+      const locationA = a.location.toUpperCase()
+      const locationB = b.location.toUpperCase()
+      if (locationA < locationB) {
+        return -1;
+      }
+      if (locationA > locationB) {
+        return 1;
+      }
+      return 0;
+    } else {
+      const locationA = a.location.toUpperCase()
+      const locationB = b.location.toUpperCase()
+      if (locationB < locationA) {
+        return -1;
+      }
+      if (locationB > locationA) {
+        return 1;
+      }
+      return 0;
+    }
+  })
 
   return (
     <div className="app">
       <Header handleSetFilter={handleSetFilter} />
-      <ListingsContainer listings={displayListings} handleDeleteListing={handleDeleteListing} />
+      <ListingsContainer listings={displayListings} handleDeleteListing={handleDeleteListing} handleSort={handleSort} />
     </div>
   );
 }
